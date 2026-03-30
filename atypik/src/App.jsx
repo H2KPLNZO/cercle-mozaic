@@ -224,7 +224,15 @@ function FormModal({ onClose }) {
 
   const handleSubmit = async () => {
     if (!form.prenom || !form.nom || !form.email) {
-      setError("Merci de renseigner au minimum ton prénom, nom et email.");
+      setError("Merci de renseigner ton prénom, nom et email.");
+      return;
+    }
+    if (!form.activite) {
+      setError("Merci de répondre à la question 1 — qui es-tu en tant qu'entrepreneur·e ?");
+      return;
+    }
+    if (!form.pourquoi) {
+      setError("Merci de répondre à la question 2 — ce qui t'a amené·e vers le Cercle.");
       return;
     }
     setError("");
