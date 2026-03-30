@@ -711,7 +711,7 @@ export default function CercleMozaic() {
 
           <FadeIn delay={.1}>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginBottom: 44 }}>
-              {[["Durée", "2h en visio", "une fois par mois"], ["Groupe", "6 à 8", "cercle fermé"], ["Parcours", "10 séances", "progressif"], ["Lancement", "Avril 2026", ""]].map(([label, val, sub], i) => (
+              {[["Durée", "2h en visio", "une fois par mois"], ["Groupe", "6 à 8", "cercle fermé"], ["Parcours", "10 séances", "progressif"], ["Lancement", "Avril — Juin 2026", "dès que le groupe est complet"]].map(([label, val, sub], i) => (
                 <div key={i} style={{ background: C.bg, borderRadius: 3, padding: "22px 18px", border: `1px solid ${C.dark}0D` }}>
                   <p style={{ fontSize: 10, letterSpacing: ".1em", textTransform: "uppercase", color: C.forest, margin: "0 0 8px 0" }}>{label}</p>
                   {/* Valeur — T1 */}
@@ -738,6 +738,7 @@ export default function CercleMozaic() {
               </p>
             </div>
             <p style={{ fontSize: 15, color: `${C.dark}70`, marginBottom: 32 }}>Parce que le groupe compte autant que le parcours.</p>
+            <p style={{ fontSize: 15, color: `${C.dark}70`, marginBottom: 32 }}>Le cercle démarrera entre avril et juin 2026 — dès que nous serons 6 à 8.</p>
           </FadeIn>
 
           <FadeIn delay={.3}>
