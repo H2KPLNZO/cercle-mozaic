@@ -505,6 +505,33 @@ export default function CercleMozaic() {
                 </p>
               </div>
 
+              {/* Symptômes concrets */}
+              <div style={{ marginBottom: 36 }}>
+                {[
+                  "Tu évites cette conversation avec ton associé depuis 3 semaines.",
+                  "Tu relis ce mail 6 fois avant de l'envoyer.",
+                  "Tu sors d'un déjeuner client épuisé — sans savoir pourquoi.",
+                  "Tu fixes tes prix en t'excusant presque.",
+                  "Tu passes 2h sur un livrable qui aurait dû prendre 20 minutes.",
+                ].map((l, i) => (
+                  <p key={i} style={{ margin: "10px 0", fontSize: 15, color: `${C.dark}80`, lineHeight: 1.65 }}>{l}</p>
+                ))}
+              </div>
+
+              {/* Procrastination */}
+              <div style={{ background: `${C.forest}08`, border: `1px solid ${C.forest}20`, borderRadius: 3, padding: "20px 24px", margin: "0 0 36px 0" }}>
+                {[
+                  ["Tu te fixes une deadline 3 mois à l'avance.", false],
+                  ["Tu sais déjà que tu le feras la veille.", false],
+                  ["Tu le sais.", true],
+                  ["Tu stresses pendant 3 mois — et ton entourage aussi.", false],
+                  ["Puis tu culpabilises.", false],
+                  ["Puis tu recommences.", true],
+                ].map(([l, bold], i) => (
+                  <p key={i} style={{ margin: "6px 0", fontSize: 15, fontWeight: bold ? 500 : 400, color: bold ? C.dark : `${C.dark}80`, lineHeight: 1.65 }}>{l}</p>
+                ))}
+              </div>
+
               <p style={{ margin: "0 0 16px 0", color: `${C.dark}85` }}>Tu sur-analyses chaque décision.</p>
               <p style={{ margin: "0 0 12px 0", color: `${C.dark}85` }}>Tu t'épuises à empiler tous tes masques :</p>
 
@@ -520,6 +547,14 @@ export default function CercleMozaic() {
                 {[["Tu fonctionnes. Tu enchaînes.", true], ["Ton cerveau ne s'arrête jamais.", false], ["Tes émotions n'osent plus s'exprimer.", false], ["Parfois une colère qui explose.", false], ["Tu ne sais souvent même pas pourquoi.", false], ["Ce n'était pas si grave.", false, true]].map(([t, bold, dim], i) => (
                   <p key={i} style={{ margin: "8px 0", fontWeight: bold ? 500 : 400, color: `${C.dark}${dim ? "50" : "80"}` }}>{t}</p>
                 ))}
+              </div>
+
+              {/* Solitude */}
+              <div style={{ margin: "0 0 36px 0" }}>
+                <p style={{ ...T.cite, fontSize: 20, color: `${C.dark}70`, lineHeight: 1.6, margin: 0 }}>
+                  Tu te demandes si les autres ressentent ça aussi.<br />
+                  Ou si c'est juste toi.
+                </p>
               </div>
 
               <div style={{ textAlign: "center", margin: "52px 0" }}>
