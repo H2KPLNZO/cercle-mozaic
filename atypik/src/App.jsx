@@ -370,7 +370,7 @@ function FormModal({ onClose }) {
                     </select>
                   </div>
                   <div>
-                    {label("Ancienneté")}
+                    {label("Ça fait combien de temps que tu es entrepreneur·e ?")}
                     <select value={form.anciennete} onChange={e => set("anciennete", e.target.value)} style={inp()}>
                       <option value="">—</option>
                       {["Moins d'un an","1 à 5 ans","Plus de 5 ans"].map(o => <option key={o}>{o}</option>)}
