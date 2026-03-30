@@ -24,5 +24,5 @@ Error generating stack: `+e.message+`
 
         * { box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body { margin: 0; }
+        html, body { margin: 0; background: #F3F0E8; }
       `})]})}(0,u.createRoot)(document.getElementById(`root`)).render((0,f.jsx)(l.StrictMode,{children:(0,f.jsx)(te,{})}));

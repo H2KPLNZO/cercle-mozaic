@@ -810,7 +810,7 @@ export default function CercleMozaic() {
 
         * { box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body { margin: 0; }
+        html, body { margin: 0; background: #F3F0E8; }
       `}</style>
     </div>
   );
