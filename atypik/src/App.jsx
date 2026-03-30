@@ -219,7 +219,46 @@ function FormModal({ onClose }) {
     ? <textarea value={form[k]} onChange={e => set(k, e.target.value)} placeholder={placeholder} rows={rows} style={inp({ lineHeight: 1.7 })} />
     : <input value={form[k]} onChange={e => set(k, e.target.value)} placeholder={placeholder} style={inp()} />;
 
-  const handleSubmit = () => setStep(1);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleSubmit = async () => {
+    if (!form.prenom || !form.nom || !form.email) {
+      setError("Merci de renseigner au minimum ton prénom, nom et email.");
+      return;
+    }
+    setError("");
+    setSending(true);
+    const allThemes = [...themes.filter(t => t !== "autre"), ...(themes.includes("autre") && autreTheme ? [autreTheme] : [])];
+    try {
+      const res = await fetch("https://formspree.io/f/mnjodwgd", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify({
+          _replyto: form.email,
+          _subject: `Candidature Cercle Mozaïc — ${form.prenom} ${form.nom}`,
+          Prénom: form.prenom,
+          Nom: form.nom,
+          Email: form.email,
+          Téléphone: form.tel || "—",
+          "Tranche d'âge": form.age || "—",
+          Ancienneté: form.anciennete || "—",
+          Disponibilités: dispo.join(", ") || "—",
+          "Q1 — Activité": form.activite,
+          "Q1 — Image URL": form.imageUrl || "—",
+          "Q1 — Pourquoi cette image": form.imagePourquoi || "—",
+          "Q2 — Ce qui m'a amené": form.pourquoi,
+          "Q3 — Thèmes": allThemes.join(", ") || "—",
+        }),
+      });
+      if (res.ok) { setStep(1); }
+      else { setError("Une erreur est survenue. Réessaie ou écris directement à Henri."); }
+    } catch {
+      setError("Une erreur est survenue. Vérifie ta connexion et réessaie.");
+    } finally {
+      setSending(false);
+    }
+  };
 
   return (
     <div style={{
@@ -251,6 +290,8 @@ function FormModal({ onClose }) {
             </h2>
             <p style={{ fontSize: 15, color: `${C.dark}70`, margin: "0 0 40px 0", lineHeight: 1.7 }}>
               Ce formulaire est court, vraiment. 3 questions,<br />pas de bonne ou mauvaise réponse. On veut juste commencer à te connaître. ✦
+              <br /><br />
+              <span style={{ fontSize: 14, color: `${C.forest}` }}>Le cercle démarrera entre avril et juin 2026 — dès que nous serons 6 à 8.</span>
             </p>
 
             <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
@@ -355,14 +396,17 @@ function FormModal({ onClose }) {
               </div>
 
               {/* Submit */}
-              <button onClick={handleSubmit} style={{
+              {error && (
+                <p style={{ fontSize: 13, color: "#A32D2D", marginBottom: 12, lineHeight: 1.5 }}>{error}</p>
+              )}
+              <button onClick={handleSubmit} disabled={sending} style={{
                 ...T.body, fontSize: 14, letterSpacing: ".06em", textTransform: "uppercase",
-                background: C.forest, color: C.offWhite,
+                background: sending ? `${C.forest}80` : C.forest, color: C.offWhite,
                 border: "none", borderRadius: 2, padding: "16px 32px",
-                cursor: "pointer", width: "100%", marginTop: 8,
+                cursor: sending ? "not-allowed" : "pointer", width: "100%", marginTop: 8,
                 transition: "background .3s",
               }}>
-                Envoyer ma candidature →
+                {sending ? "Envoi en cours..." : "Envoyer ma candidature →"}
               </button>
             </div>
           </>
