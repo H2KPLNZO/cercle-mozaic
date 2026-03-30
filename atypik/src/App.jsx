@@ -259,8 +259,10 @@ function FormModal({ onClose }) {
           "Q3 — Thèmes": allThemes.join(", ") || "—",
         }),
       });
+      const data = await res.json();
+      console.log("Formspree status:", res.status, data);
       if (res.ok) { setStep(1); }
-      else { setError("Une erreur est survenue. Réessaie ou écris directement à Henri."); }
+      else { setError(`Erreur ${res.status} : ${data.error || "inconnue"}. Réessaie ou écris directement à Henri.`); }
     } catch {
       setError("Une erreur est survenue. Vérifie ta connexion et réessaie.");
     } finally {
@@ -378,10 +380,10 @@ function FormModal({ onClose }) {
                     </select>
                   </div>
                   <div>
-                    {label("Ça fait combien de temps que tu es entrepreneur·e ?")}
+                    {label("Tu es entrepreneur·e depuis combien de temps ?")}
                     <select value={form.anciennete} onChange={e => set("anciennete", e.target.value)} style={inp()}>
                       <option value="">—</option>
-                      {["Moins d'un an","1 à 5 ans","Plus de 5 ans"].map(o => <option key={o}>{o}</option>)}
+                      {["Moins d'un an","1 à 5 ans","Plus de 5 ans", "Je n'ai pas encore franchi le pas"].map(o => <option key={o}>{o}</option>)}
                     </select>
                   </div>
                 </div>
