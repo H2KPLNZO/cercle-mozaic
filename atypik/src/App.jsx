@@ -45,22 +45,7 @@ function FadeIn({ children, delay = 0, style = {} }) {
   );
 }
 
-// ── FEUILLE UNIQUE réutilisable ───────────────────────────────────────────
-function Leaf({ x, y, size = 14, rotate = 0, color, animClass }) {
-  return (
-    <g transform={`translate(${x},${y}) rotate(${rotate})`} className={animClass}>
-      <path
-        d={`M0,0 C${size*0.3},-${size*0.8} ${size},-${size*0.6} ${size*0.5},-${size*1.4}
-           C${size*0.8},-${size*0.8} ${size*1.1},-${size*0.3} ${size*0.5},0
-           C${size*0.3},${size*0.3} ${size*0.1},${size*0.15} 0,0 Z`}
-        fill={color} opacity=".55"
-      />
-      <path d={`M0,0 L${size*0.5},-${size*1.4}`} stroke={color} strokeWidth="0.6" opacity=".4" fill="none"/>
-    </g>
-  );
-}
-
-// Branches avec feuilles — hero
+// Branches — hero
 function Branches({ style }) {
   return (
     <svg viewBox="0 0 320 340" fill="none" style={style} overflow="visible">
@@ -77,36 +62,15 @@ function Branches({ style }) {
       <path d="M248 210 Q262 192 274 172 Q282 156 288 136" stroke={C.forest} strokeWidth="1" fill="none" opacity=".20" strokeLinecap="round"/>
       <path d="M78 54 Q66 42 56 28" stroke={C.forest} strokeWidth="0.7" fill="none" opacity=".16" strokeLinecap="round"/>
       <path d="M78 54 Q70 40 64 24" stroke={C.forest} strokeWidth="0.6" fill="none" opacity=".14" strokeLinecap="round"/>
-      {/* Feuilles — balancement lent */}
-      <Leaf x={78}  y={54}  size={13} rotate={-30}  color={C.forest} animClass="sway-1"/>
-      <Leaf x={64}  y={24}  size={11} rotate={20}   color={C.forest} animClass="sway-2"/>
-      <Leaf x={94}  y={6}   size={10} rotate={-15}  color={C.forest} animClass="sway-3"/>
-      <Leaf x={132} y={72}  size={14} rotate={-45}  color={C.forest} animClass="sway-1"/>
-      <Leaf x={116} y={60}  size={10} rotate={10}   color={C.forest} animClass="sway-2"/>
-      <Leaf x={278} y={44}  size={12} rotate={30}   color={C.forest} animClass="sway-3"/>
-      <Leaf x={268} y={30}  size={10} rotate={-20}  color={C.forest} animClass="sway-1"/>
-      <Leaf x={288} y={136} size={11} rotate={15}   color={C.forest} animClass="sway-2"/>
-      <Leaf x={252} y={62}  size={9}  rotate={-35}  color={C.forest} animClass="sway-3"/>
-      <Leaf x={82}  y={42}  size={8}  rotate={25}   color={C.forest} animClass="sway-1"/>
-      {/* Feuilles qui flottent librement */}
-      <Leaf x={170} y={55}  size={9}  rotate={40}   color={C.forestLt} animClass="float-1"/>
-      <Leaf x={210} y={30}  size={7}  rotate={-60}  color={C.forestLt} animClass="float-2"/>
-      <Leaf x={50}  y={80}  size={8}  rotate={15}   color={C.forestLt} animClass="float-3"/>
     </svg>
   );
 }
 
-// Liane avec feuilles — section miroir, côté droit discret
+// Liane — section miroir, côté droit
 function Vine({ style }) {
   return (
     <svg viewBox="0 0 80 400" fill="none" style={style} overflow="visible">
       <path d="M40 0 Q55 40 42 80 Q28 120 45 160 Q60 200 38 240 Q20 275 42 310 Q58 340 40 380 Q35 395 38 400" stroke={C.forest} strokeWidth="1.2" fill="none" opacity=".25" strokeLinecap="round"/>
-      <Leaf x={42}  y={80}  size={12} rotate={40}  color={C.forest} animClass="sway-2"/>
-      <Leaf x={45}  y={160} size={13} rotate={-30} color={C.forest} animClass="sway-1"/>
-      <Leaf x={38}  y={240} size={11} rotate={50}  color={C.forest} animClass="sway-3"/>
-      <Leaf x={42}  y={310} size={12} rotate={-20} color={C.forest} animClass="sway-2"/>
-      <Leaf x={38}  y={380} size={10} rotate={35}  color={C.forest} animClass="sway-1"/>
-      {/* Vrilles */}
       <path d="M42 80 Q60 70 65 55 Q62 45 52 48" stroke={C.forest} strokeWidth="0.7" fill="none" opacity=".18" strokeLinecap="round"/>
       <path d="M45 160 Q20 148 18 132 Q22 122 32 126" stroke={C.forest} strokeWidth="0.7" fill="none" opacity=".18" strokeLinecap="round"/>
       <path d="M38 240 Q58 228 62 212 Q58 202 48 206" stroke={C.forest} strokeWidth="0.7" fill="none" opacity=".16" strokeLinecap="round"/>
@@ -128,12 +92,6 @@ function Roots({ style }) {
       <path d="M285 80 Q302 100 314 125 Q320 142 315 162" stroke={C.offWhite} strokeWidth="0.8" fill="none" opacity=".15" strokeLinecap="round"/>
       <path d="M330 150 Q345 168 355 190 Q362 205 365 218" stroke={C.offWhite} strokeWidth="0.8" fill="none" opacity=".15" strokeLinecap="round"/>
       <path d="M378 195 Q392 205 404 218" stroke={C.offWhite} strokeWidth="0.7" fill="none" opacity=".14" strokeLinecap="round"/>
-      {/* Petites pousses claires */}
-      <Leaf x={200} y={168} size={10} rotate={-40} color={C.mist} animClass="sway-2"/>
-      <Leaf x={158} y={128} size={9}  rotate={30}  color={C.mist} animClass="sway-3"/>
-      <Leaf x={330} y={150} size={10} rotate={-25} color={C.mist} animClass="sway-1"/>
-      <Leaf x={95}  y={162} size={8}  rotate={45}  color={C.mist} animClass="sway-2"/>
-      <Leaf x={378} y={195} size={9}  rotate={-50} color={C.mist} animClass="sway-3"/>
     </svg>
   );
 }
@@ -482,7 +440,7 @@ export default function CercleMozaic() {
   }, []);
 
   return (
-    <div style={{ background: C.bg, color: C.dark, ...T.body, overflowX: "hidden" }}>
+    <div style={{ background: C.bg, color: C.dark, ...T.body, overflowX: "hidden", maxWidth: 1200, margin: "0 auto" }}>
       {modal && <FormModal onClose={close} />}
 
       {/* ── NAV ── */}
