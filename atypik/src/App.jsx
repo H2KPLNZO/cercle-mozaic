@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import henriPhoto from "./assets/henri.jpeg";
 
 // ── PALETTE ──────────────────────────────────────────────────────────────────
 const C = {
@@ -650,13 +651,8 @@ export default function CercleMozaic() {
           {/* Photo */}
           <FadeIn delay={.1}>
             <div style={{ maxWidth: 300, margin: "0 auto 60px", position: "relative" }}>
-              <div style={{ width: "100%", paddingBottom: "115%", background: `linear-gradient(145deg, ${C.bgAlt}, ${C.forest}14)`, borderRadius: 3, position: "relative", overflow: "hidden" }}>
-                <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 10 }}>
-                  <Branches style={{ width: 80, height: 90, opacity: .3 }} />
-                  <p style={{ fontSize: 12, color: `${C.dark}40`, textAlign: "center", lineHeight: 1.6, padding: "0 20px" }}>
-                    Photo d'Henri<br /><span style={{ fontSize: 11 }}>Portrait 3/4 · lumière naturelle</span>
-                  </p>
-                </div>
+              <div style={{ width: "100%", borderRadius: 3, overflow: "hidden" }}>
+                <img src={henriPhoto} alt="Henri de Capèle" style={{ width: "100%", display: "block", borderRadius: 3 }} />
               </div>
               <div style={{ position: "absolute", left: -7, top: 48, bottom: 48, width: 2, background: C.forest, opacity: .45, borderRadius: 1 }} />
             </div>
