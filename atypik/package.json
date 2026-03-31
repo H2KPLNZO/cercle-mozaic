@@ -6,9 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
-  },
+    "preview": "vite preview",
+    "deploy": "vite build && cd .. && git add . && git commit -m 'deploy' && git push"
+},
   "dependencies": {
     "react": "^19.2.4",
     "react-dom": "^19.2.4"
