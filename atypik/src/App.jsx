@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import henriPhoto from "./assets/henri.jpeg";
+import henriPhoto from "./assets/henri.jpg";
 
 // ── PALETTE ──────────────────────────────────────────────────────────────────
 const C = {
