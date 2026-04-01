@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import henriPhoto from "./assets/henri.jpeg";
+import henriPhoto from "./assets/henri.png";
 
 // ── PALETTE ──────────────────────────────────────────────────────────────────
 const C = {
@@ -634,6 +634,15 @@ export default function CercleMozaic() {
             <p style={{ ...T.cite, fontSize: 20, color: C.mist, marginTop: 16 }}>
               De ton mode d'emploi vers ton rayonnement.
             </p>
+
+            {/* Image mosaïque */}
+            <div style={{ margin: "48px auto 0", maxWidth: 560 }}>
+              <img
+                src="/og-image.png"
+                alt="Mosaïque — Cercle Mozaïc"
+                style={{ width: "100%", borderRadius: 4, opacity: .92, display: "block" }}
+              />
+            </div>
           </FadeIn>
         </div>
       </section>
