@@ -194,8 +194,10 @@ function FormModal({ onClose }) {
       setError("Merci de répondre à la question 2 — ce qui t'a amené·e vers le Cercle.");
       return;
     }
-    setError("");
-    setSending(true);
+    if (form.imageUrl && !form.imageUrl.startsWith("http")) {
+      setError("Le lien de l'image doit commencer par http:// ou https://");
+      return;
+    }
     const allThemes = [...themes.filter(t => t !== "autre"), ...(themes.includes("autre") && autreTheme ? [autreTheme] : [])];
     try {
       const res = await fetch("https://formspree.io/f/mnjodwgd", {
@@ -221,7 +223,12 @@ function FormModal({ onClose }) {
       const data = await res.json();
       console.log("Formspree status:", res.status, data);
       if (res.ok) { setStep(1); }
-      else { setError(`Erreur ${res.status} : ${data.error || "inconnue"}. Réessaie ou écris directement à Henri.`); }
+      else { 
+        const msg = res.status === 422 
+          ? "Vérifie ton adresse email — elle semble incorrecte."
+          : `Erreur ${res.status} : ${data.error || "inconnue"}. Réessaie ou écris directement à Henri.`;
+        setError(msg); 
+      }
     } catch {
       setError("Une erreur est survenue. Vérifie ta connexion et réessaie.");
     } finally {
@@ -549,7 +556,7 @@ export default function CercleMozaic() {
               <p style={{ margin: "0 0 12px 0", color: `${C.dark}85` }}>Tu t'épuises à empiler tous tes masques :</p>
 
               <div style={{ paddingLeft: 20, borderLeft: `1px solid ${C.dark}15`, margin: "12px 0 28px 0" }}>
-                {["Le bon manageur, le bon leader,", "Le bon gestionnaire, le bon fournisseur,", "Le bon mari, le bon fils, le bon papa."].map((l, i) => (
+                {["Le manager parfait. La leader inspirante.", "La femme présente. Le père disponible.", "La fille reconnaissante. Le fils qui gère."].map((l, i) => (
                   <p key={i} style={{ margin: "6px 0", fontSize: 15, color: `${C.dark}65` }}>{l}</p>
                 ))}
               </div>
@@ -633,6 +640,9 @@ export default function CercleMozaic() {
             ))}
             <p style={{ ...T.cite, fontSize: 20, color: C.mist, marginTop: 16 }}>
               De ton mode d'emploi vers ton rayonnement.
+            </p>
+            <p style={{ fontSize: 14, color: `${C.offWhite}55`, marginTop: 20, fontStyle: "italic" }}>
+              Entrepreneurs et entrepreneures — ce cercle est mixte.
             </p>
 
             {/* Image mosaïque */}
