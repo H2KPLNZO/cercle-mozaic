@@ -612,7 +612,7 @@ export default function CercleMozaic() {
 
           <FadeIn delay={.1}>
             <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 48 }}>
-              {["6 à 8 entrepreneurs atypiques.", "Un espace volontairement restreint.", "2h en visio. Une fois par mois."].map((f, i) => (
+              {["6 à 8 entrepreneurs et entrepreneures atypiques.", "Un espace volontairement restreint.", "2h en visio. Une fois par mois."].map((f, i) => (
                 <p key={i} style={{ fontSize: 15, color: `${C.offWhite}65`, margin: 0 }}>{f}</p>
               ))}
             </div>
